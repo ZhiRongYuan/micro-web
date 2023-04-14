@@ -1,0 +1,22 @@
+{
+  "name": "micro-web",
+  "version": "1.0.0",
+  "description": "micro web",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./build/run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZhiRongYuan/micro-web.git"
+  },
+  "keywords": [
+    "micro-web"
+  ],
+  "author": "yuanzhirong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZhiRongYuan/micro-web/issues"
+  },
+  "homepage": "https://github.com/ZhiRongYuan/micro-web#readme"
+}
