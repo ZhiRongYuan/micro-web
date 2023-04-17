@@ -1,26 +1,33 @@
-import React from 'react'
-import { main } from '../../utils/global'
-import './Information.scss'
+/*
+ * @Author: yuanzhirong
+ * @Date: 2023-04-14 13:58:51
+ * @LastEditors: yuanzhirong
+ * @LastEditTime: 2023-04-17 15:21:44
+ * @Description:
+ */
+import React from "react";
+import { main } from "../../utils/global";
+import "./Information.scss";
 
 // 添加资讯页面导航内容
-import InformationNav from './components/tab/index.jsx'
+import InformationNav from "./components/tab/index.jsx";
 
 // 资讯页面列表内容
-import InformationList from './components/list/index.jsx'
+import InformationList from "./components/list/index.jsx";
 
 // 右侧新闻内容
-import InformationNews from './components/news/index.jsx'
+import InformationNews from "./components/news/index.jsx";
 
 class Information extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      count: 0
-    }
+      count: 0,
+    };
   }
   componentDidMount() {
     // 设置面包屑内容
-    main.appInfo.crumbsState.setCrumbs(['首页', '选车', '丰田', '凯美瑞', '资讯列表'])
+    //main.appInfo.crumbsState.setCrumbs(['首页', '选车', '丰田', '凯美瑞', '资讯列表'])
   }
 
   render() {
@@ -35,13 +42,13 @@ class Information extends React.Component {
           </div>
 
           {/* 右侧新闻区 */}
-          <div className='information-news'>
+          <div className="information-news">
             <InformationNews />
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Information
+export default Information;
