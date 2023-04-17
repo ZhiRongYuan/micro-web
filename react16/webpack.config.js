@@ -49,6 +49,12 @@ module.exports = {
     compress: true,
     port: 9003,
     historyApiFallback: true,
-    hot: true
+    hot: true,
+    proxy: {
+      "/react16": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+    },
   }
 }

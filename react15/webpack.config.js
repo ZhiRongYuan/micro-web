@@ -1,3 +1,10 @@
+/*
+ * Author: yuanzhirong
+ * Date: 2023-04-14 13:58:51
+ * LastEditors: yuanzhirong
+ * LastEditTime: 2023-04-17 11:09:26
+ * Description:
+ */
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -13,15 +20,6 @@ module.exports = {
     libraryTarget: "umd",
     umdNamedDefine: true,
     publicPath: "http://localhost:9002/",
-  },
-  devServer: {
-    proxy: {
-      "/video": {
-        target: "https://v18.toutiaovod.com",
-        pathRewrite: { "^/video": "" },
-        changeOrigin: true,
-      },
-    },
   },
   module: {
     rules: [
@@ -66,5 +64,11 @@ module.exports = {
     port: 9002,
     historyApiFallback: true,
     hot: true,
+    proxy: {
+      "/react15": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      }
+    },
   },
 };

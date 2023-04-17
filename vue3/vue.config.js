@@ -2,7 +2,7 @@
  * Author: yuanzhirong
  * Date: 2023-04-13 17:17:56
  * LastEditors: yuanzhirong
- * LastEditTime: 2023-04-14 11:27:26
+ * LastEditTime: 2023-04-17 10:59:15
  * Description:
  */
 const path = require("path");
@@ -26,6 +26,12 @@ module.exports = {
     port,
     headers: {
       "Access-Control-Allow-Origin": "*",
+    },
+    proxy: {
+      "/vue3": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
     },
   },
   // 自定义webpack配置

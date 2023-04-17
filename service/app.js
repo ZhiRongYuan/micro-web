@@ -1,41 +1,48 @@
-/*
- * Author: yuanzhirong
- * Date: 2023-04-17 09:55:16
- * LastEditors: yuanzhirong
- * LastEditTime: 2023-04-17 09:56:59
- * Description:
- */
-var app = require("koa")(),
-  logger = require("koa-logger"),
-  json = require("koa-json"),
-  views = require("koa-views"),
-  onerror = require("koa-onerror");
+const Koa = require("koa");
+const app = new Koa();
+const views = require("koa-views");
+const json = require("koa-json");
+const onerror = require("koa-onerror");
+const bodyparser = require("koa-bodyparser");
+const logger = require("koa-logger");
 
-var index = require("./routes/index");
-var users = require("./routes/users");
-var vue2 = require("./routes/vue2")
+const index = require("./routes/index");
+const users = require("./routes/users");
+const vue2 = require("./routes/vue2");
+const react16 = require("./routes/react16");
 
 // error handler
 onerror(app);
 
-// global middlewares
-app.use(require("koa-bodyparser")());
+// middlewares
+app.use(
+  bodyparser({
+    enableTypes: ["json", "form", "text"],
+  })
+);
 app.use(json());
 app.use(logger());
-
-app.use(function* (next) {
-  var start = new Date();
-  yield next;
-  var ms = new Date() - start;
-  console.log("%s %s - %s", this.method, this.url, ms);
-});
-
 app.use(require("koa-static")(__dirname + "/public"));
 
-// routes definition
+app.use(
+  views(__dirname + "/views", {
+    extension: "pug",
+  })
+);
+
+// logger
+app.use(async (ctx, next) => {
+  const start = new Date();
+  await next();
+  const ms = new Date() - start;
+  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+});
+
+// routes
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
 app.use(vue2.routes(), vue2.allowedMethods());
+app.use(react16.routes(), react16.allowedMethods());
 
 // error-handling
 app.on("error", (err, ctx) => {
