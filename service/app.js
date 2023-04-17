@@ -13,6 +13,7 @@ var app = require("koa")(),
 
 var index = require("./routes/index");
 var users = require("./routes/users");
+var vue2 = require("./routes/vue2")
 
 // error handler
 onerror(app);
@@ -34,6 +35,7 @@ app.use(require("koa-static")(__dirname + "/public"));
 // routes definition
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
+app.use(vue2.routes(), vue2.allowedMethods());
 
 // error-handling
 app.on("error", (err, ctx) => {

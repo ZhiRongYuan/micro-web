@@ -1,3 +1,10 @@
+<!--
+ * @Author: yuanzhirong
+ * @Date: 2023-04-13 16:00:57
+ * @LastEditors: yuanzhirong
+ * @LastEditTime: 2023-04-17 10:37:36
+ * @Description: 
+-->
 <template>
   <div class="car-list-container">
     <div
@@ -22,7 +29,7 @@ export default {
   },
   methods: {
     async getCarList() {
-      const res = await axios.get('http://localhost:3000/vue2/car/list?a=1&b=2')
+      const res = await axios.get('/vue2/car/list?a=1&b=2')
       this.carList = res.data
     }
   },
@@ -44,6 +51,7 @@ export default {
   }
   &-item{
     width: 128px;
+    margin: 0 6px;
     display: flex;
     flex-direction: column;
     align-items: center;
