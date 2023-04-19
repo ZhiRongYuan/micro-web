@@ -2,12 +2,12 @@
  * Author: yuanzhirong
  * Date: 2023-04-17 16:41:03
  * LastEditors: yuanzhirong
- * LastEditTime: 2023-04-18 11:29:41
+ * LastEditTime: 2023-04-19 11:46:13
  * Description:
  */
 import { leftNav, headerState, footerState } from "../store";
 
-import { registerMicroApps } from "../../micro";
+import { registerMicroApps, start } from "../../micro";
 
 export const starMicroApp = () => {
   // 注册子应用
@@ -17,24 +17,24 @@ export const starMicroApp = () => {
     {
       beforeLoad: [
         (app) => {
-          app.loading.openLoading();
-          // 每次改动，都将头部和底部显示出来，不需要头部和底部的页面需要子应用自己处理
-          headerState.changeHeader(true);
-          footerState.changeFooter(true);
-          console.log("开始加载 -- ", app.name);
+          // app.loading.openLoading();
+          // // 每次改动，都将头部和底部显示出来，不需要头部和底部的页面需要子应用自己处理
+          // headerState.changeHeader(true);
+          // footerState.changeFooter(true);
+          //console.log("开始加载 -- ", app.name);
         },
       ],
       mounted: [
         (app) => {
-          console.log("加载完成 -- ", app.name);
-          setTimeout(() => {
-            app.loading.closeLoading();
-          }, 200);
+          //console.log("加载完成 -- ", app.name);
+          // setTimeout(() => {
+          //   app.loading.closeLoading();
+          // }, 200);
         },
       ],
       destoryed: [
         (app) => {
-          console.log("卸载完成 -- ", app.name);
+          //console.log("卸载完成 -- ", app.name);
         },
       ],
     },
@@ -45,4 +45,6 @@ export const starMicroApp = () => {
   if (window.location.pathname === "/") {
     window.history.pushState(null, null, "/vue3#/index");
   }
+
+  start();
 };

@@ -2,7 +2,7 @@
  * Author: yuanzhirong
  * Date: 2023-04-14 17:07:03
  * LastEditors: yuanzhirong
- * LastEditTime: 2023-04-17 10:12:54
+ * LastEditTime: 2023-04-19 11:16:02
  * Description:
  */
 const path = require("path");
@@ -14,6 +14,7 @@ const filePath = {
   react15: path.join(__dirname, "../react15"),
   react16: path.join(__dirname, "../react16"),
   service: path.join(__dirname, "../service"),
+  main: path.join(__dirname, "../main"),
 };
 
 //cd 子应用目录  npm start 启动项目
