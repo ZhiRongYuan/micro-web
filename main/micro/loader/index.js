@@ -1,12 +1,5 @@
-/*
- * Author: yuanzhirong
- * Date: 2023-04-19 11:31:01
- * LastEditors: yuanzhirong
- * LastEditTime: 2023-04-19 11:32:36
- * Description:
- */
-import { performScriptForEval } from "../sandbox/performScript";
 import { fetchResource } from "../utils/fetchResource";
+import { sandBox } from "../sandbox";
 // 加载html的方法
 export const loadHtml = async (app) => {
   // 第一个，子应用需要显示在哪里
@@ -26,7 +19,7 @@ export const loadHtml = async (app) => {
   ct.innerHTML = dom;
 
   scripts.forEach((item) => {
-    performScriptForEval(item);
+    sandBox(app, item);
   });
 
   return app;

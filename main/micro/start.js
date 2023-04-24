@@ -2,13 +2,14 @@
  * Author: yuanzhirong
  * Date: 2021-12-21 14:24:53
  * LastEditors: yuanzhirong
- * LastEditTime: 2023-04-19 14:03:59
+ * LastEditTime: 2023-04-24 14:49:06
  * Description:
  */
 import { setMainLifecycle } from "./const/mainLifeCycle";
 import { setList, getList } from "./const/subApps";
 import { rewriteRouter } from "./router/rewriteRouter";
 import { currentApp } from "./utils";
+import { prefetch } from "./loader/prefetch";
 
 // 实现路由拦截
 rewriteRouter();
@@ -16,7 +17,7 @@ rewriteRouter();
 export const registerMicroApps = (appList, lifeCycle) => {
   setList(appList);
 
-  setMainLifecycle(lifeCycle)
+  setMainLifecycle(lifeCycle);
 };
 
 // 启动微前端框架
@@ -46,6 +47,9 @@ export const start = () => {
 
     window.__CURRENT_SUB_APP__ = app.activeRule;
 
-    //window.history.pushState("", "", url);
+    window.history.pushState("", "", url);
   }
+
+  // 预加载 - 加载接下来的所有子应用，但是不显示
+  prefetch();
 };
